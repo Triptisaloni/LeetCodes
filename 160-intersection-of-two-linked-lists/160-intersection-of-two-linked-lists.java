@@ -1,3 +1,4 @@
+import java.util.*;
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -12,7 +13,26 @@
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) 
     {
-//         2 pointers
+        
+        //Hashing
+        HashSet<ListNode> map = new HashSet<>();
+        
+        while(headA!=null)
+        {
+            map.add(headA);
+            headA=headA.next;
+        }
+        while(headB!=null)
+        {
+            if (map.contains(headB))
+                return headB;
+            
+            headB=headB.next;
+        }
+        
+        return null;
+        
+/*        2 pointers
         
         if(headA==null ||headB==null)
             return null;
@@ -34,5 +54,5 @@ public class Solution {
                 ptr2= headA;
         }
         
-        return ptr1;
+        return ptr1;*/
 }}
