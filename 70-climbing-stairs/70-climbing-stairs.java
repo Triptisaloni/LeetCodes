@@ -24,31 +24,42 @@ class Solution {
     
     public int climbStairs(int n) 
     {
-        
+//         Memoization
         // int[] temp = new  int[n+1];
         // return count(n,temp);
         
-         if(n==0)
-            return 1;
-        else if(n<0)
-            return 0;
+//         Dynamic Approach
+//          if(n==0)
+//             return 1;
+//         else if(n<0)
+//             return 0;
         
-         int[] s = new int[n+1];
+//          int[] s = new int[n+1];
         
-        s[0]=1;
+//         s[0]=1;
         
-        for(int i =1; i<=n; i++)
-        {
-            if(i==1)
-			s[i]=s[i-1];
+//         for(int i =1; i<=n; i++)
+//         {
+//             if(i==1)
+// 			s[i]=s[i-1];
             
-            else 
-                s[i]= s[i-1]+s[i-2];
-            // else
-            //      s[i]= s[i-1]+s[i-2] + s[i-3];
+//             else 
+//                 s[i]= s[i-1]+s[i-2];
+//             
+//         }
+        
+//         return s[n];
+       
+        if(n==0 || n==1) return 1;
+        int[] nums = new int[n+1];
+        nums[0] = 1;
+        nums[1] = 1;
+        for(int i=2; i<=n; i++) {
+            nums[i] = nums[i-1] + nums[i-2];
         }
         
-        return s[n];
+        return nums[n];
+  
         
     }
 }
