@@ -4,17 +4,11 @@ class Solution {
         int m= s.length();
         int n = t.length();
         
-//            if(m==0||n==0)
-//             return 0;
+           if(m==0||n==0)
+            return 0;
         
         int storage[][]=new int[m+1][n+1];
-        
-//         for(int i=0; i<=m; i++)
-//             storage[i][0]=0;
-        
-//           for(int i=0; i<=n; i++)
-//             storage[0][i]=0;
-        
+
         
         for(int i=1;i<=m;i++)
         {
@@ -33,11 +27,22 @@ class Solution {
     
     public boolean isSubsequence(String s, String t) 
     {
-        int res = sub(s,t);
-        if(res==s.length())
-            return true;
-        else
-            return false;
+//         int res = sub(s,t);
+//         if(res==s.length())
+//             return true;
+//         else
+//             return false;
+        
+         int i = 0 , j = 0;
+        while(i < s.length() && j < t.length()){
+            if(s.charAt(i) == t.charAt(j)){
+                i++;
+                j++;
+            }else{
+                j++;
+            }
+        }
+        return (i == s.length());
      
     }
 }
