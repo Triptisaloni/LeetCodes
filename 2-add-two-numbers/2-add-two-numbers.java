@@ -9,56 +9,36 @@
  * }
  */
 class Solution {
-    public ListNode add(ListNode l1, ListNode l2,int carry)
-    {
-         if(l1==null && l2==null)
-         {
-                if(carry>0)
-                {ListNode temp= new ListNode(carry);
-             return temp;}
-         }
-        
-        
-        if(l1==null && l2!=null)
-        {
-            int data = l2.val+carry;
-              ListNode temp= new ListNode(data%10);
-            carry = data/10;
-            temp.next= add(l1, l2.next, carry);
-            return temp;
-        }    
-        if(l2==null && l1!=null)
-        {
-            int data = l1.val+carry;
-              ListNode temp= new ListNode(data%10);
-            carry = data/10;
-            temp.next= add(l1.next, l2, carry);
-            return temp;
-        }
-        
-        if(l1!=null && l2!=null)
-        {int s =l1.val+l2.val+carry;
-        int data = s%10;
-        if(s/10<1)
-            carry =0;
-        else
-            carry = s/10;
-        
-        ListNode sum = new ListNode(data);
-        sum.next= add(l1.next, l2.next, carry);
-        
-        return sum;}
-        
-        return null;
-    }
-    
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         
-        if (l1==null)
-            return l2;
-        if(l2==null)
-            return l1;
+        if(l1==null && l2==null)
+            return null;
         
-        return add(l1, l2, 0);
+        ListNode dummy = new ListNode(0);
+        ListNode curr = dummy;
+        int carry=0;
+        
+        while(l1!=null || l2!=null || carry >=1)
+        {
+            int sum=0;
+            if(l1!=null)
+            {
+                sum+= l1.val;
+                l1=l1.next;
+            }
+             if(l2!=null)
+            {
+                sum+= l2.val;
+                l2=l2.next;
+            }
+            
+            sum+=carry;
+            carry = sum/10;
+            ListNode neww = new ListNode(sum%10);
+            curr.next = neww;
+            curr=curr.next;
+        }
+        
+        return dummy.next;
     }
 }
