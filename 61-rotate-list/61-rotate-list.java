@@ -18,10 +18,12 @@ class Solution {
         }
         ListNode tmp = head;
         int count = 0;
+        
         while (tmp!= null) {
             tmp = tmp.next;
             count ++;
         }
+        
         k = k % count;
         for (int i = 0; i < k ; i++) {
             fast = fast.next;
