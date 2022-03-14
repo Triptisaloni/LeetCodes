@@ -70,22 +70,18 @@ class Solution
     Node reverseList(Node head)
     {
         
-        if(head==null || head.next==null)
-        return head;
-        
-        
-        Node prev = null;
-        Node nex = null;
-        Node curr=head;
-        
-        while(curr!=null)
-        {
-           nex = curr.next;
-           curr.next=prev;
-           prev = curr;
-           curr = nex;
-        }
-        
-        return prev;
+                if (head == null || head.next == null) 
+            return head; 
+
+        /* reverse the rest list and put 
+        the first element at the end */
+        Node rest = reverseList(head.next); 
+        head.next.next = head; 
+
+        /* tricky step -- see the diagram */
+        head.next = null; 
+
+        /* fix the head pointer */
+        return rest; 
     }
 }
