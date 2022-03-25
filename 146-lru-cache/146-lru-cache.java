@@ -18,17 +18,17 @@ class LRUCache {
         }
     }
     
-    HashMap<Integer, Node> cache;
+    HashMap<Integer, Node> cache= new HashMap<>();
     int capacity;
-    Node head;
-    Node tail;
+    Node head=new Node();;
+    Node tail=new Node();;
     
     public LRUCache(int capacity) 
     {
         this.capacity = capacity;
-        cache = new HashMap<>();
-        head = new Node();
-        tail = new Node();
+        // cache = new HashMap<>();
+        // head = new Node();
+        // tail = new Node();
         
         head.next=tail;
         tail.prev = head;
