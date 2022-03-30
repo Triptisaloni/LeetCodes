@@ -32,8 +32,8 @@ class Solution {
             {
                 if(binarySearch(matrix[i], target) != -1)
                     return true;
-                else
-                    return false;
+                // else
+                //     return false;
             }
         }
         return false;
