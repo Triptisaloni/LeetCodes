@@ -1,55 +1,38 @@
 class Solution {
-    
-    public int binary(int [] arr, int target)
-    {
-        int l=0, r=arr.length-1;
-        while(l<=r)
-        {
-            int mid = l+(r-l)/2;
-            
-            if(arr[mid]== target)
-                return mid;
-            
-            else if(target<arr[mid])
-                r--;
-            else
-                l++;
-        }
+    public int[] searchRange(int[] nums, int target) {
+        if (nums == null || nums.length == 0) return new int[] {-1, -1};
         
-        return -1;
+        int low = binarySearch(nums, target, true);
+        int high = binarySearch(nums, target, false);
+        
+        return new int[] {low, high};
     }
     
-    public int[] searchRange(int[] nums, int target) {
-        
-        int n= nums.length;
-        int res[] = new int[2];
-        res[0]=-1;
-        res[1]=-1;
-        
-        if(n==0)
-            return res;
-        
-        int index = binary(nums, target);
-        
-        if(index==-1)
-            return res;
-        
-        int l=index, r=index;
-        
-        while(l>=0 && nums[l]==target)
-        {
-            l--;
+    private int binarySearch(int[] nums, int target, boolean isLowBound) {
+        int left = 0;
+        int right = nums.length - 1;
+        int res = -1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (target < nums[mid]) {
+                right = mid - 1;
+            }
+            else if (target > nums[mid]) {
+                left = mid + 1;
+            }
+            else {
+                res = mid;
+                if (isLowBound) {
+                    // searching for lower bound, forcing to the left
+                    right = mid - 1;
+                }
+                else {
+                    // searching for higher bound, forcing to the right
+                    left = mid + 1;
+                }
+            }
         }
-         while(r<n && nums[r]==target)
-        {
-            r++;
-        }
-        
-        res[0]= l+1;
-        res[1]=r-1;
         
         return res;
-    
-        
     }
 }
