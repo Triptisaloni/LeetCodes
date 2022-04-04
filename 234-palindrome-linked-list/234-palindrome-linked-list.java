@@ -41,7 +41,7 @@ class Solution {
             curr = curr.next;
         }
         
-        while(ptr!=null)
+        while(!s.isEmpty())
         {
             if(s.peek()!=ptr.val)
                 return false;
