@@ -10,7 +10,7 @@
  */
 class Solution {
     public ListNode swapNodes(ListNode head, int k) {
-        
+//         Swapping data
         if(head==null||head.next==null)
             return head;
         ListNode x=head;
