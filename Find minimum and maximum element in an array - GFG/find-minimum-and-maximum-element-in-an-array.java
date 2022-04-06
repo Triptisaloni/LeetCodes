@@ -72,7 +72,7 @@ class Compute
             if(a[i]<min)
             min = a[i];
             
-            if(a[i]>max)
+            else if(a[i]>max)
             max= a[i];
         }
          pair res = new pair(min, max);
