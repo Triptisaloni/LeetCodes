@@ -1,22 +1,32 @@
 class Solution {
-    public int lastStoneWeight(int[] stones) {
-        Arrays.sort(stones);
-        int count = stones.length-1;
-        while(count!=0)
+    public int lastStoneWeight(int[] stones) 
+    {
+            
+        int n = stones.length;
+        ArrayList<Integer> list = new ArrayList<>();
+        
+        for(int i : stones)
+            list.add(i);
+        
+        
+        while(list.size()>1)
         {
-            if(stones[stones.length-1]==stones[stones.length-2])
-            {
-                stones[stones.length-1]=0;
-                stones[stones.length-2]=0;
-            }
-            if(stones[stones.length-1]!=stones[stones.length-2])
-            {
-                stones[stones.length-1]=stones[stones.length-1] - stones[stones.length-2];
-                stones[stones.length-2]=0;
-            }
-            Arrays.sort(stones);
-            count--;
-        }           
-    return stones[stones.length-1];
-	}
+            Collections.sort(list);
+            
+            int y =  list.get(list.size()-1);
+            list.remove(list.size()-1);
+            
+            int x =  list.get(list.size()-1);
+            list.remove(list.size()-1);
+            
+            if(x!=y)
+                list.add(y-x);
+                
+        }
+        
+        if(list.isEmpty())
+            return 0;
+        else
+            return list.get(0);
+    }
 }
