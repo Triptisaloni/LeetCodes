@@ -60,7 +60,8 @@ class Solution {
     {
        int i, j, gap =m+n;
        
-       for(gap = nextGap(gap); gap>0; gap = nextGap(gap))
+       gap = nextGap(gap); 
+       while(gap>0)
        {
            
            for(i=0; i+gap<n; i++)
@@ -84,6 +85,8 @@ class Solution {
                if(arr2[j] > arr2[gap+j])
                swap(arr2, j, gap+j);
            }
+           
+            gap = nextGap(gap);
        }
     }
 }
