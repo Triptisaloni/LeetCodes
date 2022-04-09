@@ -33,9 +33,15 @@ class Solution {
     int getPairsCount(int[] arr, int n, int k) {
         
         HashMap<Integer, Integer> map = new HashMap<>();
-        
+               int pairs =0;
+               
+               
         for(int i=0; i<n; i++)
         {
+            if(map.containsKey(k-arr[i]))
+            pairs+= map.get(k-arr[i]);
+            
+            
             if(map.containsKey(arr[i]))
             {
                 map.put(arr[i], map.get(arr[i])+1);
@@ -44,27 +50,27 @@ class Solution {
             map.put(arr[i], 1);
         }
         
-        int pairs =0;
+ 
         
         
-        for(int i=0; i<n ;i++)
-        {
-            if(arr[i] >= k )
-            continue;
+        // for(int i=0; i<n ;i++)
+        // {
+        //     if(arr[i] >= k )
+        //     continue;
             
-            int res = k- arr[i];
+        //     int res = k- arr[i];
             
-            if(map.containsKey(res))
-            {
-                int val = map.get(res);
-                pairs+=val;
-            }
+        //     if(map.containsKey(res))
+        //     {
+        //         int val = map.get(res);
+        //         pairs+=val;
+        //     }
             
-            if(res == arr[i])
-            pairs--;
-        }
+        //     if(res == arr[i])
+        //     pairs--;
+        // }
         
         
-        return pairs/2;
+        return pairs;
     }
 }
