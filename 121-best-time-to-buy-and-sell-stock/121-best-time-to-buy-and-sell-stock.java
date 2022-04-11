@@ -11,11 +11,9 @@ class Solution {
         
     for(int i=1; i<n;i++)
         {
-        if(prices[i]<cp)
-                cp= prices[i];
-         
             max = Math.max(max, prices[i]-cp);
-            
+            if(prices[i]<cp)
+                cp= prices[i];
         }
         
         return max;
