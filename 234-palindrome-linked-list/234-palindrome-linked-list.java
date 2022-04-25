@@ -24,30 +24,50 @@ class Solution {
         return slow;
         
     }
+    
+    public ListNode reverse(ListNode head)
+    {
+        if(head==null || head.next==null)
+            return head;
+        ListNode curr = head, prev=null, nex = null;
+        
+        while(curr!=null)
+        {
+            nex= curr.next;
+            curr.next= prev;
+            prev = curr;
+            curr = nex;
+        }
+        
+     return prev;
+    }
+    
+    
     public boolean isPalindrome(ListNode head) {
         
         if(head==null || head.next==null)
             return true;
         
-        Stack <Integer> s= new Stack<>();
+//         ListNode slow = head, fast =head;
+//         while(fast!=null && fast.next!=null)
+//         {
+//             slow = slow.next;
+//             fast = fast.next;
+//         }
         
-        ListNode curr=head;
-        ListNode ptr = head;
+        ListNode mid = mid(head);
         
+        ListNode revhead = reverse(mid);
+        // return true;
         
-        while(curr!=null)
+        while(head!=null && revhead!=null)
         {
-            s.push(curr.val);
-            curr = curr.next;
-        }
-        
-        while(!s.isEmpty())
-        {
-            if(s.peek()!=ptr.val)
+            if(head.val!=revhead.val)
                 return false;
             
-            s.pop();
-            ptr= ptr.next;
+            head=head.next;
+             revhead = revhead.next;
+
         }
         
         return true;
