@@ -50,7 +50,7 @@ class Solution
         int sum = A[i];
         
         
-        while(j<n-1 &&j<k )
+        while(j<k )
         {
             if(sum+A[j] + A[k] == X)
             return true;
