@@ -31,6 +31,10 @@ class Solution {
                     if(val+1==m)
                         ans.add(nums[i][j]);
                 }
+                else
+                {
+                    map.put(nums[i][j], 1);
+                }
             }
         }
         
