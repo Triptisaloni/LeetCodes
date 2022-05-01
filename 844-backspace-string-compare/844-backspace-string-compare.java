@@ -9,8 +9,9 @@ class Solution {
            if(ch == '#'){
                 if(!ss.isEmpty())
                     ss.pop();
-                continue;
+                // continue;
             }
+            else
             ss.push(ch);
         }
         
@@ -20,8 +21,9 @@ class Solution {
             {
                 if(!tt.isEmpty())
                     tt.pop();
-                continue;
+                // continue;
             }
+              else
             tt.push(ch);
         }
 
