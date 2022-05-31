@@ -6,4 +6,4 @@ from
 users left join orders 
 on user_id = buyer_id
 
-group by user_id,join_date
+group by user_id
