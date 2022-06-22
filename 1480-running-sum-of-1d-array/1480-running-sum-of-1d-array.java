@@ -3,21 +3,22 @@ class Solution {
         
         int n= nums.length;
         
-        if(n<=1)
-            return nums;
+//         if(n<=1)
+//             return nums;
         
-        int[] res = new int[n];
+//         int[] res = new int[n];
         
         int sum=0;
         
         for(int i=0; i<n; i++)
-        {
+        {            
             sum+=nums[i];
+
+            nums[i]= sum;
             
-            res[i]= sum;
         }
         
-        return res;
+        return nums;
     }
     
 }
