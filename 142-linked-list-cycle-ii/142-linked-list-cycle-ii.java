@@ -14,21 +14,23 @@ public class Solution {
         
         ListNode p = head;
         
-        if(p==null||p.next==null)
+        
+        if(p!=null && p.next==null)
             return null;
         
         HashSet<ListNode> map = new HashSet<>();
         
-             while(p!=null)
-             {
-                 if(map.contains(p))
-                     return p;
-                 
-                 else
-                     map.add(p);
-                 
-                 p=p.next;
-             }
+        
+        while(p!=null)
+        {
+            if(map.contains(p))
+                return p;
+            
+            else
+                map.add(p);
+            
+            p=p.next;
+        }
         
         return null;
     }
