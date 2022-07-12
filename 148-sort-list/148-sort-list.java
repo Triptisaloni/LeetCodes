@@ -1,4 +1,3 @@
-import java.util.*;
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -10,32 +9,79 @@ import java.util.*;
  * }
  */
 class Solution {
-    public ListNode sortList(ListNode head) {
+    
+    public ListNode middle(ListNode head)
+    {
+        ListNode slow=head, fast = head;
         
-        if(head==null)
+        while(fast.next!=null && fast.next.next!=null)
+        {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        
+        return slow;
+    }
+    
+    public ListNode merge(ListNode left, ListNode right)
+    {
+        if(left==null) return right;
+        if(right==null) return left;
+        
+        ListNode result = new ListNode(-1);
+        ListNode temp = result;
+        
+        
+        while(left!=null && right!=null)
+        {
+            if(left.val < right.val)
+            {
+                temp.next = left;
+                temp =left;
+                left= left.next;
+            }
+            else
+            {
+                temp.next = right;
+                temp =right;
+                right= right.next;
+            }
+        }
+        
+        if(left!=null)
+        {
+            temp.next =left;
+        }
+        if(right!=null)
+        {
+            temp.next = right;
+        }
+        
+        result = result.next;
+        return result;
+    }
+    
+    public ListNode mergeSort(ListNode head)
+    {
+        if(head==null || head.next==null)
             return head;
         
-        ListNode ptr = head;
+        ListNode left = head;
+        ListNode mid = middle(head);
+        ListNode right = mid.next;
+        mid.next=null;
         
-        ArrayList<Integer> store = new ArrayList<>();
+       left = mergeSort(head);
+        right  = mergeSort(right);
         
-        while(ptr!=null)
-        {
-            store.add(ptr.val);
-            ptr=ptr.next;
-        }
+        return merge(left, right);
         
-        Collections.sort(store);
         
-        ListNode res = new ListNode(store.get(0));
-        // res = 
-        ListNode temp = res;
-        for(int i=1; i<store.size(); i++)
-        {
-            temp.next = new ListNode(store.get(i));
-            temp = temp.next;
-        }
+    }
+    
+    public ListNode sortList(ListNode head) {
         
-        return res;
+        
+        return mergeSort(head);
     }
 }
