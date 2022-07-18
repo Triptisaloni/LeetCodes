@@ -1,7 +1,7 @@
 class Solution {
     public int maxSubArray(int[] nums)
     {
-            
+            // kadanes algo
         
         int currSum =0, maxSum =Integer.MIN_VALUE;
         
