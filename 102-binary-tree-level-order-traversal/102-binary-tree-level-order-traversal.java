@@ -18,6 +18,7 @@ class Solution {
         
         Queue<TreeNode> q = new LinkedList<TreeNode>();
         List<List<Integer>> res = new LinkedList<List<Integer>>();
+        
         if(root==null)
             return res;
         
@@ -25,24 +26,75 @@ class Solution {
         
         while(!q.isEmpty())
         {
-                int level = q.size();
-            List<Integer> subList = new LinkedList<Integer>();
-            
-            
-            for(int i=0; i<level; i++) 
+            int level = q.size();
+            List<Integer> chotu = new LinkedList<Integer>();
+                
+            for(int i=0; i<level; i++)
             {
-                if(q.peek().left != null)
+                if(q.peek().left!=null)
                     q.offer(q.peek().left);
-                if(q.peek().right != null) 
+                if(q.peek().right!=null)
                     q.offer(q.peek().right);
                 
+                chotu.add(q.poll().val);
                 
-                subList.add(q.poll().val);
             }
-            
-            res.add(subList);
+            res.add(chotu);
         }
+        
+        
+        
+        
+        
         return res;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+            
+            
+            
+            
+        
+        
+        
+//         Queue<TreeNode> q = new LinkedList<TreeNode>();
+//         List<List<Integer>> res = new ArrayList<List<Integer>>();
+//         if(root==null)
+//             return res;
+        
+//         q.offer(root);
+        
+//         while(!q.isEmpty())
+//         {
+//                 int level = q.size();
+//             List<Integer> subList = new LinkedList<Integer>();
+            
+            
+//             for(int i=0; i<level; i++) 
+//             {
+//                 if(q.peek().left != null)
+//                     q.offer(q.peek().left);
+//                 if(q.peek().right != null) 
+//                     q.offer(q.peek().right);
+                
+                
+//                 subList.add(q.poll().val);
+//             }
+            
+//             res.add(subList);
+//         }
+//         return res;
         
     }
 }
