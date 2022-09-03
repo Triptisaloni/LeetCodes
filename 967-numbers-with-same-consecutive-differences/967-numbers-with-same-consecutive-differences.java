@@ -1,63 +1,40 @@
 class Solution {
-    public int[] numsSameConsecDiff(int n, int k)
-    {
-        ArrayList<Integer> ans = new ArrayList<>();
+    public int[] numsSameConsecDiff(int n, int k) {
         
-        for(int i=1; i<10; i++)
-        help(n-1, k, ans, i);
+        Queue<Integer> q = new LinkedList<>();
         
-        int arr[] = new int[ans.size()];
-        for(int i=0; i<arr.length; i++)
+        for(int i =1; i<10; i++)
+            q.add(i);
+        
+        int count =1;
+        
+        while(!q.isEmpty())
         {
-            arr[i] = ans.get(i);
+            if(count==n)
+                break;
+            
+            int size = q.size();
+            for(int i=0; i<size; i++)
+            {
+                int curr = q.poll();
+                int last = curr%10;
+                
+ for(int j=0;j<=9;j++){
+                    if(Math.abs(last-j) == k)
+                        q.add(curr*10+j);
+                }
+            }
+            count++;
+            
         }
         
+        int arr[] = new int[q.size()];
+      
+        int ind =0;
+        while(!q.isEmpty())
+            arr[ind++]=q.poll();
+        
+        
         return arr;
-    }
-    
-   public void help(int n, int k, ArrayList<Integer> ans, int number)
-   {
-       if(n==0)
-       {
-           ans.add(number);
-           return;
        }
-       
-       int prevDigit = number%10;
-       
-       if(prevDigit +k <=9 )
-           help(n-1, k, ans, number*10 + (prevDigit+k));
-       if(k!=0 && prevDigit-k>=0)
-                     help(n-1, k, ans, number*10 + prevDigit-k);
-       
-       return;
- 
-   }
-    
-//         private void dfs(int num, int n, final int k, List<Integer> ans) {
-//         if(n == 0) {
-//             ans.add(num);
-//             return;
-//         }
-//         int lastDigit = num % 10;
-//         if(lastDigit + k < 10) dfs(num * 10 + lastDigit + k, n - 1, k, ans);
-//         if(k != 0 && lastDigit - k >= 0) dfs(num * 10 + lastDigit - k, n - 1, k, ans);
-//     }
-    
-//      public int[] numsSameConsecDiff(int n, int k) {
-//         List<Integer> ans = new ArrayList<>();
-//         if(n == 0) {
-//             ans.add(0);
-//         }
-        
-//         for(int d = 1; d < 10; d++) {
-//             dfs(d, n - 1, k, ans);
-//         }
-        
-//         for(int i=0; i<ans.size();i++)
-//         {
-//            arr[i]= ans.get(i);
-//         }
-         
-//          return arr;
 }
