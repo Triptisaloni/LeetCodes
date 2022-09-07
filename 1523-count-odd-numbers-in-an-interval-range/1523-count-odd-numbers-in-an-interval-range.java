@@ -1,26 +1,14 @@
 class Solution {
     public int countOdds(int low, int high) {
         
-//         int odd=0;
+        int con = high-low+1;
         
-//         for(int i =low; i<=high; i++)
-//         {
-//             if(i%2==1)
-//             odd++;
-//         }
+        if(con%2==0)
+            return con/2;
         
-//         return odd;
-        
-        int step = high-low+1;
-        
-        if(step%2==0)
-            return step/2;
-        
-        if(low%2==0)
-            return(step-1)/2;
+        if(high%2==0)
+            return con/2;
         else
-            return(step+1)/2;
-        
-        // return 0;
+            return con/2 +1;
     }
 }
