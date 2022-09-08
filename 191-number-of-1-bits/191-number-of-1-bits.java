@@ -2,18 +2,17 @@ public class Solution {
     // you need to treat n as an unsigned value
     public int hammingWeight(int n) {
         
-        int ans =0;
+        String s = Integer.toBinaryString(n);
+        int count=0;
         
-        while(n!=0)
+        for(int i=0;i<s.length();i++)
         {
-            // if(n%2==1)
-            n= n & (n-1);
-                ans++;
-            
-            // n=n/2;
+            if(s.charAt(i)=='1')
+            {
+                count++;
+            }
         }
-        
-        return ans;
+        return count;
         
     }
 }
