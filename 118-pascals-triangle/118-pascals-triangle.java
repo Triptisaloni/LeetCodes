@@ -1,33 +1,29 @@
-import java.util.ArrayList;
-
 class Solution {
-    public List<List<Integer>> generate(int numRows) 
-    {
-      List<List<Integer>> res = new ArrayList<List<Integer>>();
+    public List<List<Integer>> generate(int numRows) {
         
-        for(int i=0; i<numRows; i++)
+        List<List<Integer>> ans = new ArrayList<>();
+        
+        for(int i=0; i<numRows ; i++)
         {
-            List<Integer> curr = new ArrayList<>();
-            List<Integer> prev = null;
+
+                List<Integer> curr = new ArrayList<>();
+                  List<Integer> prev = null;
             
-            if(res.size()>0)
-                prev= res.get(res.size()-1);
+            if(i!=0)
+                prev = ans.get(ans.size()-1);
             
-            
-            for(int j=0; j<= i; j++)
+            for(int j = 0; j<=i; j++)
             {
                 if(j==0 || j==i)
                     curr.add(1);
-                
-                else if(prev != null)
-                {
-                    int sum = prev.get(j)+ prev.get(j-1);
-                    curr.add(sum);
-                }
+                else if(prev!=null)
+                    curr.add(prev.get(j)+ prev.get(j-1));
             }
-            res.add(curr);
+            
+            ans.add(curr);
         }
         
-        return res;
+        return ans;
+        
     }
 }
