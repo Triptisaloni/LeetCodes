@@ -10,7 +10,7 @@ class Solution {
                   List<Integer> prev = null;
             
             if(i!=0)
-                prev = ans.get(ans.size()-1);
+                prev = ans.get(i-1);
             
             for(int j = 0; j<=i; j++)
             {
