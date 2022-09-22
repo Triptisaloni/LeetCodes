@@ -12,6 +12,21 @@ class Solution {
         }
     }
     
+//     public String reverseWords(String s)
+//     {
+//         String arr[] = s.split(" ");
+//         String ans="";
+        
+//         for(int i=0; i<arr.length ;i++)
+//         {
+//             StringBuilder temp = new StringBuilder(arr[i]);
+//             ans= ans+ temp.reverse().toString() +" ";
+//         }
+        
+//         return ans.substring(0, ans.length()-1);
+// //          to reduce space after last word
+//     }
+    
     public String reverseWords(String s) {
         
         int n = s.length();
@@ -41,7 +56,7 @@ class Solution {
         
 //         }
         
-//         help(arr, start, n-1);
+//         help(arr, start, n-1);---> this is done for last word because no ' ' is present at the end
         
         return String.valueOf(arr);
     }
