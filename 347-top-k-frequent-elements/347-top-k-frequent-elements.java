@@ -14,9 +14,9 @@ class Solution {
         
         PriorityQueue<int[]> pq  = new PriorityQueue<>((a,b) -> a[0]-b[0]);
         
-        for(Map.Entry<Integer, Integer> e : map.entrySet())
+        for(int e : map.keySet())
         {
-            pq.add(new int[]{e.getValue(), e.getKey()});
+            pq.add(new int[]{map.get(e), e});
             if(pq.size()>k)
                 pq.poll();
         }
