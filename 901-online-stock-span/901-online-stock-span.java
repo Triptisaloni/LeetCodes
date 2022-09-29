@@ -1,6 +1,6 @@
 class StockSpanner {
 
-    Stack<Pair> s;
+    Stack<int[]> s;
     
     public StockSpanner() {
         s= new Stack<>();
@@ -10,24 +10,14 @@ class StockSpanner {
         
         int span = 1;
         
-        while(!s.isEmpty() && s.peek().a <= price)
+        while(!s.isEmpty() && s.peek()[0] <= price)
         {
-            span+=s.pop().b;
+            span+=s.pop()[1];
         }
         
-        s.push(new Pair(price, span));
+        s.push(new int[]{price, span});
         return span;
         
-    }
-}
-class Pair
-{
-    int a,b;
-    
-    Pair(int x, int y)
-    {
-        a= x;
-        b= y;
     }
 }
 
