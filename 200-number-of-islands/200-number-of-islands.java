@@ -1,75 +1,50 @@
 class Solution {
-    public int numIslands(char[][] grid) 
-    {
-        int row= grid.length, col= grid[0].length;
-        boolean [][] done = new boolean[row][col];
-        int count =0;
+    public int numIslands(char[][] grid) {
         
-        for(int i=0; i<row; i++)
-        for(int j=0; j<col; j++)
+        int n = grid.length;
+        int m = grid[0].length;
+        
+        boolean  vis[][] = new boolean [n][m];
+        int ans = 0, temp=0;
+        
+        for(int i=0; i<n ; i++)
         {
-            if(!done[i][j] && grid[i][j]!='0')
+            for(int j=0; j<m; j++)
             {
-                help(grid, done, i, j, row, col);
-                    count++;
+                if(grid[i][j]=='1' && !vis[i][j])
+                {
+                    vis[i][j] = true;
+                    dfs(grid, vis, i, j, n, m);
+                    ans++;
+                } 
             }
         }
-        return count;
-}
         
+        return ans;
+    }
+    
+    public void dfs(char[][] grid, boolean [][] vis, int r, int c, int n, int m)
+    {
         
-        public void help(char[][] grid, boolean[][] done, int i, int j, int row, int col )
+        // 
+        
+        int delRow[] = new int[]{-1,0,1,0};
+        int delCol[] = new int[]{0,1,0,-1};
+        // int count =0;
+        
+        for(int i=0; i<4; i++)
         {
-            if(i<0 || j<0 || i>=row ||j>=col)
-                return;
-            if(done[i][j]==true)
-                return;
-            if(grid[i][j]=='0')
-                return;
+            int x = r+delRow[i];
+            int y = c+delCol[i];
             
-            done[i][j]=true;
-            
-            help(grid, done, i+1, j, row, col);
-            help(grid, done, i, j+1, row, col);
-            help(grid, done, i-1, j, row, col);
-            help(grid, done, i, j-1, row, col);
+            if(x>=0 && x<n && y>=0 && y<m && !vis[x][y] && grid[x][y]=='1')
+            {
+                vis[x][y]= true;
+                dfs(grid, vis, x, y, n, m);
+            }
         }
         
+        // return 1+count;
         
-//     {
-        
-//         boolean [][] visited=new boolean[grid.length][grid[0].length];
-//         int c=0;
-        
-//         for(int i=0;i<grid.length;i++){
-//             for(int j=0;j<grid[i].length;j++)
-//             {
-//                 if(visited[i][j]!=true && grid[i][j]!='0')
-//                 {
-//                     helper(grid,i,j,visited);
-//                     c++;
-//                 }
-//             }
-//         }
-        
-//         return c;
-//     }
-    
-    
-//     private void helper(char[][] matrix,int i,int j,boolean[][]visited){
-//         if(i<0) return;
-//         if(j<0)  return;
-        
-//         if(i==matrix.length) return;
-//         if(j==matrix[i].length) return;
-        
-//         if(visited[i][j]==true) return;
-//         if(matrix[i][j]=='0') return;
-        
-//         visited[i][j]=true;
-//         helper(matrix,i,j+1,visited);
-//         helper(matrix,i,j-1,visited);
-//         helper(matrix,i-1,j,visited);
-//         helper(matrix,i+1,j,visited);
-//     }
+    }
 }
