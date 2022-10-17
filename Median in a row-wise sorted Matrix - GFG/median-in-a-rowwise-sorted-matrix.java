@@ -39,55 +39,48 @@ class GFG
 class Solution {
     int median(int matrix[][], int r, int c) 
     {
-    //      if(c==1)
-    //      return matrix[r/2][0];
+        int max=0, min=2001;
+        
+         for(int i=0; i<r; i++)
+         {
+             if(matrix[i][0]<min)
+             min = matrix[i][0];
+             
+             if(matrix[i][c-1]>max)
+             max = matrix[i][c-1];
+         }
          
-    //      if(r==1)
-    //      return matrix[0][c/2];
+         int n = r*c;
+         int mid;
          
-        int n = r*c ;
-        
-        int min = 2000, max = 1;
-        for(int i=0; i<r; i++)
-        {
-            if(matrix[i][0]<min)
-            min = matrix[i][0];
-            
-            if(matrix[i][c-1]>max)
-            max = matrix[i][c-1];
-        }
-        
-        int mid;
-        
-        while(min<=max)
-        {
-            mid = (min+max)/2;
-            int ans=0;
-            
-            for(int i=0; i<r; i++)
-            {
-                int l =0, h= c-1;
-                
-                //binary search
-                while(l<=h)
-                {
-                    int aadha = (l+h)/2;
-                    if(matrix[i][aadha] <=mid)
-                     l = aadha+1;
-                    else
-                      h= aadha-1;
-                }
-                
-                ans+=l;
-            }
-            
-            if(ans<=n/2)
-            min = mid+1;
-            else
-            max = mid-1;
-            
-        }
-        
-        return min;
+         while(min<=max)
+         {
+             mid=(min+max)/2;
+             int count=0;
+             
+             for(int i=0; i<r; i++)
+             {
+                 int l=0, h=c-1;
+                 
+                 while(l<=h)
+                 {
+                     int half = (l+h)/2;
+                     
+                     if(matrix[i][half]<=mid)
+                     l=half+1;
+                     else
+                     h = half-1;
+                 }
+                 
+                 count+=l;
+             }
+             
+             if(count<=n/2)
+             min = mid+1;
+             else
+             max=mid-1;
+         }
+         
+       return min;  
     }
 }
