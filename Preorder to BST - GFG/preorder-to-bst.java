@@ -42,29 +42,30 @@ class GFG {
 //User function Template for Java
 
 
+//Function that constructs BST from its preorder traversal.
 public static Node post_order(int pre[], int size) 
 {
- if(size==1) return new Node(pre[0]);
-  return make(pre,0,size-1);
+    return help(pre, 0, size-1);
 } 
 
-static Node make (int[]arr, int l, int r){
-    if(r<l)
+public static Node help(int pre[], int l, int r)
+{
+    if(l>r)
     return null;
     
-    Node root = new Node (arr[l]);
+    Node root = new Node(pre[l]);
+    int i=0;
     
-    int ind=l ;
-    
-    for(int i =l+1; i<=r; i++)
-{
-        if(arr[i]>arr[l])
-        { ind = i-1; break;}
-        
+    for(i=l+1; i<=r; i++)
+    if(pre[i]>pre[l])
+    {
+        break;
     }
-   root.left =  make(arr,l+1,ind);
-   root.right = make(arr,ind+1,r);
-   return root;
+    
+    root.left = help(pre, l+1,i -1);
+    root.right = help(pre, i, r);
+    
+    return root;
 }
 
 //{ Driver Code Starts.
