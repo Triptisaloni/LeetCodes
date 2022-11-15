@@ -19,8 +19,10 @@ class Solution {
          int LHeight=0, RHeight=0;
         TreeNode l=root, r=root;
         
-        for(; l!=null; ++LHeight, l=l.left);
-        for(; r!=null; ++RHeight, r=r.right);
+        for(; l!=null;l=l.left)
+            LHeight++;
+        for(; r!=null;  r=r.right)
+            RHeight++;
         
         return LHeight==RHeight ? (int)Math.pow(2, RHeight)-1 
             : 1+countNodes(root.left) + countNodes(root.right);
